@@ -6,7 +6,7 @@ export default function EditDialog({ open, song, onClose, onSave, saving }) {
 
   useEffect(() => {
     if (song) setForm({
-      id: song.id,
+      id: song._id,
       title: song.title || "",
       artist: song.artist || "",
       year: song.year ?? ""

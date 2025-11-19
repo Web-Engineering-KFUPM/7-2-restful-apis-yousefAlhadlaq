@@ -69,7 +69,7 @@ LAB SETUP INSTRUCTIONS
  */
 
 /** =================================================================
- *  TODO 3 — POST /api/songs (Insert) file: server/index.js
+ *  TODO 3 — POST /api/songs (Insert) file: server/server.js
  *  =================================================================
  *  Goal:
  *    - Insert a new song into DB.
@@ -219,7 +219,7 @@ export default function App() {
     setSaving(true);
     try {
       const upd = await apiUpdateSong(id, payload);
-      setSongs((arr) => arr.map(s => s.id === id ? upd : s));
+      setSongs((arr) => arr.map(s => s._id === id ? upd : s));
       setEditingId(null);
       setEditingSong(null);
       showToast("Saved.");
@@ -234,7 +234,7 @@ export default function App() {
     if (!confirm("Delete this song?")) return;
     try {
       await apiDeleteSong(id);
-      setSongs((arr) => arr.filter(s => s.id !== id));
+      setSongs((arr) => arr.filter(s => s._id !== id));
       showToast("Deleted.");
     } catch (e) {
       showToast(e.message, "error");
@@ -255,7 +255,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        <div className="badge">API: {import.meta.env.VITE_API_URL || "http://localhost:5174"}</div>
+        <div className="badge">API: { "http://localhost:5173"}</div>
       </div>
 
       <div className="grid">
